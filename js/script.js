@@ -16,16 +16,20 @@ $("#title").change(function() {
    }
 });
 
-
+var p;
 $("#design").on("change", function() {
 
   if ($("#design").val() === "js puns") {
-      $("#color > option").siblings().prop( "disabled", false);
-      $("#color > option:nth-of-type(n + 4)").prop( "disabled", true );
+      $("#color").prepend(p);
+      p = $("#color > option:nth-of-type(n + 4)").detach();
+
   } else if ($("#design").val() === "heart js") {
-      $("#color > option").siblings().prop( "disabled", false);
-      $("#color > option:nth-of-type(-n + 3)").prop( "disabled", true );
+      $("#color").append(p);
+      p = $("#color > option:nth-of-type(-n + 3)").detach();
+
   } else {
-      $("#color > option").siblings().prop( "disabled", false);
+      $("#color").append(p);
+      p = null;
+
   }
 });
