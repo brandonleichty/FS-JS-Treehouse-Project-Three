@@ -16,6 +16,8 @@ $("#title").change(function() {
    }
 });
 
+
+//shows the appropriate shirts based upon the design selection
 var p;
 $("#design").on("change", function() {
 
@@ -30,6 +32,22 @@ $("#design").on("change", function() {
   } else {
       $("#color").append(p);
       p = null;
+  }
+});
 
+
+$('#js-frameworks').on('change',function(){
+  if($(this).is(':checked')){
+    $('#express').prop( "disabled", true );
+  } else {
+    $('#express').prop( "disabled", false);
+  }
+});
+
+$('#express').on('change',function(){
+  if($(this).is(':checked')){
+    $('#js-frameworks').prop( "disabled", true );
+  } else {
+    $('#js-frameworks').prop( "disabled", false);
   }
 });
