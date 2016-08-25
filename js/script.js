@@ -1,9 +1,16 @@
 /* Global Variables -------------------------------- */
+var runningTotal = 0;
+
 var otherField = '<input type="text" id="other-title" placeholder="Your Title">';
+
+var totalField = '<div id="total"><p>TOTAL: ' + runningTotal + '</p></div';
+
+
 
 
 /* DOM append -------------------------------- */
 $("#title").after(otherField);
+$(".activities").after(totalField);
 
 $("#other-title").hide();
 
@@ -35,7 +42,7 @@ $("#design").on("change", function() {
   }
 });
 
-
+//disables Express Workshop when JS Frameworks is selected (conflicting times)
 $('#js-frameworks').on('change',function(){
   if($(this).is(':checked')){
     $('#express').prop( "disabled", true );
@@ -44,6 +51,7 @@ $('#js-frameworks').on('change',function(){
   }
 });
 
+//disables JS Frameworks when Express is selected (conflicting times)
 $('#express').on('change',function(){
   if($(this).is(':checked')){
     $('#js-frameworks').prop( "disabled", true );
@@ -51,3 +59,28 @@ $('#express').on('change',function(){
     $('#js-frameworks').prop( "disabled", false);
   }
 });
+
+//disables node.js Workshop when JavaScript Libraries is selected (conflicting times)
+$('#js-libs').on('change',function(){
+  if($(this).is(':checked')){
+    $('#node').prop( "disabled", true );
+  } else {
+    $('#node').prop( "disabled", false);
+  }
+});
+
+//disables JavaScript Libraries Workshop when node.js Workshop is selected (conflicting times)
+$('#node').on('change',function(){
+  if($(this).is(':checked')){
+    $('#js-libs').prop( "disabled", true );
+  } else {
+    $('#js-libs').prop( "disabled", false);
+  }
+});
+
+
+
+function updateRunningTotal(){
+var totalSum = 0;
+
+}
