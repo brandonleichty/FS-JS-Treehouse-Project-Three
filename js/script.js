@@ -18,6 +18,13 @@ $("#totalSection").hide();
 
 paymentSelector();
 
+
+
+/* Event listeners -------------------------------- */
+
+//validates all information is properly input into form before submitting
+$("#registerButton").on("click", formValidation);
+
 //shows the "Your Title" text entry field when "other" is selected
 $("#title").change(function() {
   if ($("#title").val() === "other") {
@@ -83,25 +90,6 @@ $('#node').on('change',function(){
 });
 
 
-
-function updateRunningTotal(){
-
-  runningTotal = 0; //reset runningTotal to 0
-
-  $(".activities input").each(function(){
-    if ($(this).prop( "checked" )) {
-      runningTotal += parseInt($(this).val());
-    }
-
-    //this IF statement is to make sure the runningTotal doesn't display 0 before the "hide" animation runs. Simply for esthetic reasons
-    if (runningTotal >= 100) {
-      $("#total").html(runningTotal); //updates the total in the html
-    }
-
-});
-
-}
-
 $('.activities').children().on('change',function(){
   updateRunningTotal();
 
@@ -137,15 +125,33 @@ function paymentSelector(){
 };
 
 
+
+/* Functions -------------------------------- */
+
+
+function updateRunningTotal(){
+
+  runningTotal = 0; //reset runningTotal to 0
+
+  $(".activities input").each(function(){
+    if ($(this).prop( "checked" )) {
+      runningTotal += parseInt($(this).val());
+    }
+
+    //this IF statement is to make sure the runningTotal doesn't display 0 before the "hide" animation runs. Simply for esthetic reasons
+    if (runningTotal >= 100) {
+      $("#total").html(runningTotal); //updates the total in the html
+    }
+
+});
+
+}
+
+
+
 function formValidation(){
 
-  if ($("#name").val() !== "" &&      //checks to if name exist
-      $("#payment").val() !== "select_method" &&    //checks for valid payment selection
-      $(".activities input").is(':checked') !== false &&
-      $("#cvv").val().length === 3 && //checks for a three digit cvv
-      $("#zip").val().length === 5 &&
-
-      ) {    //checks to make sure at least one workshop is selected
+  if (nameValidation() && paymentValidation()  && workshopValidation() && cvvValidation() && zipValidation()) {
     console.log("SUBMITTED!");
   } else {
     console.log("MISSING INFORMATION");
@@ -154,7 +160,81 @@ function formValidation(){
 }
 
 
-$("#registerButton").on("click", formValidation);
+//validates there is a name in the name field
+function nameValidation(){
+  if ($("#name").val() !== "") {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+//validates thee is a payment method selected
+function paymentValidation(){
+  if ($("#payment").val() !== "select_method") {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+//validates at least one workshop is selected
+function workshopValidation(){
+  if ($(".activities input").is(':checked') !== false) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+//validates there is a three digit cvv
+function cvvValidation(){
+  if ($("#cvv").val().length === 3) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+//validates there is a three digit cvv
+function zipValidation(){
+  if ($("#zip").val().length === 5) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+
+
+var value = $("#cc-num").val();
+
+// takes the form field value and returns true on valid number
+function validCreditCard(value) {
+  // accept only digits, dashes or spaces
+	if (/[^0-9-\s]+/.test(value)) return false;
+
+	// The Luhn Algorithm. It's so pretty.
+	var nCheck = 0, nDigit = 0, bEven = false;
+	value = value.replace(/\D/g, "");
+
+	for (var n = value.length - 1; n >= 0; n--) {
+		var cDigit = value.charAt(n),
+			  nDigit = parseInt(cDigit, 10);
+
+		if (bEven) {
+			if ((nDigit *= 2) > 9) nDigit -= 9;
+		}
+
+		nCheck += nDigit;
+		bEven = !bEven;
+	}
+
+	return (nCheck % 10) == 0;
+}
+
+
+
 
 //call on page load -- credit card is set as "selected" in html
 paymentSelector();
