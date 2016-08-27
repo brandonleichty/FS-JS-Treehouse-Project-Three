@@ -3,16 +3,19 @@ var runningTotal = 0;
 
 var otherField = '<input type="text" id="other-title" placeholder="Your Title">';
 
-var totalField = '<div id="total"><p>TOTAL: ' + runningTotal + '</p></div';
-
+var totalField = '<p id="totalSection">TOTAL: $<span id="total"></span></p>';
 
 
 
 /* DOM append -------------------------------- */
 $("#title").after(otherField);
-$(".activities").after(totalField);
 
 $("#other-title").hide();
+
+$(".activities").after(totalField);
+
+$("#totalSection").hide();
+
 
 //shows the "Your Title" text entry field when "other" is selected
 $("#title").change(function() {
@@ -81,6 +84,30 @@ $('#node').on('change',function(){
 
 
 function updateRunningTotal(){
-var totalSum = 0;
+
+  runningTotal = 0; //reset runningTotal to 0
+
+  $(".activities input").each(function(){
+    if ($(this).prop( "checked" )) {
+      runningTotal += parseInt($(this).val());
+    }
+
+    //this IF statement is to make sure the runningTotal doesn't display 0 before the "hide" animation runs. Simply for esthetic reasons
+    if (runningTotal >= 100) {
+      $("#total").html(runningTotal); //updates the total in the html
+    }
+
+});
 
 }
+
+$('.activities').children().on('change',function(){
+  updateRunningTotal();
+
+  if (runningTotal !== 0) {
+    $("#totalSection").show(300);
+  } else {
+    $("#totalSection").hide(300);
+  }
+
+});

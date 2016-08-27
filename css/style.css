@@ -115,6 +115,11 @@ button:hover {
 	background: #184c62;
 }
 
+#totalSection {
+  font-size: 1.25em;
+  font-weight: 500;
+}
+
 /* =================================
   Page Styles
 ==================================== */
