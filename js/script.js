@@ -16,6 +16,7 @@ $(".activities").after(totalField);
 
 $("#totalSection").hide();
 
+paymentSelector();
 
 //shows the "Your Title" text entry field when "other" is selected
 $("#title").change(function() {
@@ -113,17 +114,47 @@ $('.activities').children().on('change',function(){
 
 
 
-$("#payment").on("change", function() {
+$("#payment").on("change", paymentSelector);
+
+
+function paymentSelector(){
 
   if ($("#payment").val() === "credit card") {
       $("#credit-card").show();
       $("#paypal, #bitcoin").hide();
-  } else if ($("#payment").val() === "paypal") {
+  }
+  if ($("#payment").val() === "paypal") {
       $("#paypal").show();
       $("#credit-card, #bitcoin").hide();
-  } else {
+  }
+  if ($("#payment").val() === "bitcoin") {
       $("#bitcoin").show();
       $("#credit-card, #paypal").hide();
-
   }
-});
+  if ($("#payment").val() === "select_method") {
+      $("#credit-card, #paypal, #bitcoin").hide();
+  }
+};
+
+
+function formValidation(){
+
+  if ($("#name").val() !== "" &&      //checks to if name exist
+      $("#payment").val() !== "select_method" &&    //checks for valid payment selection
+      $(".activities input").is(':checked') !== false &&
+      $("#cvv").val().length === 3 && //checks for a three digit cvv
+      $("#zip").val().length === 5 &&
+
+      ) {    //checks to make sure at least one workshop is selected
+    console.log("SUBMITTED!");
+  } else {
+    console.log("MISSING INFORMATION");
+  }
+
+}
+
+
+$("#registerButton").on("click", formValidation);
+
+//call on page load -- credit card is set as "selected" in html
+paymentSelector();
