@@ -5,7 +5,7 @@ var otherField = '<input type="text" id="other-title" placeholder="Your Title">'
 
 var totalField = "<p id='totalSection'>TOTAL $<span id='total'></span></p>";
 
-
+var cardNum = $("#cc-num").val();
 
 /* DOM append -------------------------------- */
 $("#title").after(otherField);
@@ -24,6 +24,11 @@ paymentSelector();
 
 //validates all information is properly input into form before submitting
 $("#registerButton").on("click", formValidation);
+
+//updates cardNum variable on keyup
+$("#cc-num").keyup(function(){
+    cardNum = $("#cc-num").val();
+})
 
 //shows the "Your Title" text entry field when "other" is selected
 $("#title").change(function() {
@@ -207,19 +212,18 @@ function zipValidation(){
 
 
 
-var value = $("#cc-num").val();
 
 // takes the form field value and returns true on valid number
-function validCreditCard(value) {
+function validCreditCard(cardNum) {
   // accept only digits, dashes or spaces
-	if (/[^0-9-\s]+/.test(value)) return false;
+	if (/[^0-9-\s]+/.test(cardNum)) return false;
 
 	// The Luhn Algorithm. It's so pretty.
 	var nCheck = 0, nDigit = 0, bEven = false;
-	value = value.replace(/\D/g, "");
+	cardNum = cardNum.replace(/\D/g, "");
 
-	for (var n = value.length - 1; n >= 0; n--) {
-		var cDigit = value.charAt(n),
+	for (var n = cardNum.length - 1; n >= 0; n--) {
+		var cDigit = cardNum.charAt(n),
 			  nDigit = parseInt(cDigit, 10);
 
 		if (bEven) {
