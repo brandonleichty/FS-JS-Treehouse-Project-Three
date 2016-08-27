@@ -3,7 +3,7 @@ var runningTotal = 0;
 
 var otherField = '<input type="text" id="other-title" placeholder="Your Title">';
 
-var totalField = '<p id="totalSection">TOTAL: $<span id="total"></span></p>';
+var totalField = "<p id='totalSection'>TOTAL $<span id='total'></span></p>";
 
 
 
@@ -109,5 +109,21 @@ $('.activities').children().on('change',function(){
   } else {
     $("#totalSection").hide(300);
   }
+});
 
+
+
+$("#payment").on("change", function() {
+
+  if ($("#payment").val() === "credit card") {
+      $("#credit-card").show();
+      $("#paypal, #bitcoin").hide();
+  } else if ($("#payment").val() === "paypal") {
+      $("#paypal").show();
+      $("#credit-card, #bitcoin").hide();
+  } else {
+      $("#bitcoin").show();
+      $("#credit-card, #paypal").hide();
+
+  }
 });
