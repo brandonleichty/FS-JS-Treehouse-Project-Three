@@ -120,6 +120,26 @@ button:hover {
   font-weight: 500;
 }
 
+#payment {
+  margin-bottom: 30px;
+}
+
+
+#visa,
+#mastercard,
+#discover,
+#amex {
+  height: 50px;
+  opacity: .25;
+  transition: opacity .25s;
+}
+
+#mastercard,
+#discover,
+#amex {
+  margin-left: 1%
+}
+
 /* =================================
   Page Styles
 ==================================== */

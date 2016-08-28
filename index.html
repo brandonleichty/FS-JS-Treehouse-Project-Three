@@ -11,8 +11,8 @@
 	<div class="container">
 
     <header>
-      <span>Register for</span>
       <h1>Full Stack Conf</h1>
+      <span>Registration</span>
     </header>
 
     <form action="index.html" method="post">
@@ -55,7 +55,7 @@
         <div>
           <label for="design">Design:</label>
           <select id="design" name="user_design">
-            <option>Select Theme</option>
+            <option selected>Select Theme</option>
             <option value="js puns">Theme - JS Puns</option>
             <option value="heart js">Theme - I &#9829; JS</option>
           </select>
@@ -96,6 +96,13 @@
           <option value="paypal">PayPal</option>
           <option value="bitcoin">Bitcoin</option>
         </select>
+
+        <div id="paymentOptionIndicator">
+          <img id="visa" src="img/visa.svg" alt="">
+          <img id="mastercard" src="img/mastercard.svg" alt="">
+          <img id="discover" src="img/discover.svg" alt="">
+          <img id="amex" src="img/amex.svg" alt="">
+        </div>
 
         <div id="credit-card" class="credit-card">
 

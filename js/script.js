@@ -9,6 +9,18 @@ var cardNum = $("#cc-num").val();
 
 var mailInput = $("#mail").val();
 
+
+var visaIndicator = new RegExp("^4");
+
+var masterCardIndicator = new RegExp("^5[1-5]");
+
+var amexIndicator = new RegExp("^3[47]");
+
+var discoverIndicator = new RegExp("^(6011|622(12[6-9]|1[3-9][0-9]|[2-8][0-9]{2}|9[0-1][0-9]|92[0-5]|64[4-9])|65)");
+
+
+
+
 /* DOM append -------------------------------- */
 $("#title").after(otherField);
 
@@ -17,6 +29,8 @@ $("#other-title").hide();
 $(".activities").after(totalField);
 
 $("#totalSection").hide();
+
+$("#colors-js-puns").hide();
 
 paymentSelector();
 
@@ -29,7 +43,34 @@ $("#registerButton").on("click", formValidation);
 
 //updates cardNum variable on keyup
 $("#cc-num").keyup(function(){
+
     cardNum = $("#cc-num").val();
+
+    if (cardNum.match(visaIndicator) != null){
+        $('#visa').css({"opacity":"1"});
+    } else {
+        $('#visa').css({"opacity":".25"});
+    }
+
+    if (cardNum.match(masterCardIndicator) != null){
+        $('#mastercard').css({"opacity":"1"});
+      } else {
+        $('#mastercard').css({"opacity":".25"});
+      }
+
+
+    if (cardNum.match(amexIndicator) != null){
+        $('#amex').css({"opacity":"1"});
+      } else {
+        $('#amex').css({"opacity":".25"});
+      }
+
+    if (cardNum.match(discoverIndicator) != null){
+        $('#discover').css({"opacity":"1"});
+      } else {
+        $('#discover').css({"opacity":".25"});
+      }
+
 })
 
 //updates mailInput variable on keyup when user types in email
@@ -54,12 +95,15 @@ $("#design").on("change", function() {
   if ($("#design").val() === "js puns") {
       $("#color").prepend(p);
       p = $("#color > option:nth-of-type(n + 4)").detach();
+      $("#colors-js-puns").show(300);
 
   } else if ($("#design").val() === "heart js") {
       $("#color").append(p);
       p = $("#color > option:nth-of-type(-n + 3)").detach();
+      $("#colors-js-puns").show(300);
 
   } else {
+      $("#colors-js-puns").hide(300);
       $("#color").append(p);
       p = null;
   }
@@ -187,6 +231,15 @@ function nameValidation(){
   }
 }
 
+
+function emailValidation(){
+
+  var regExpression = /^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i;
+  return regExpression.test(mailInput);
+
+}
+
+
 //validates thee is a payment method selected
 function paymentValidation(){
   if ($("#payment").val() !== "select_method") {
@@ -225,7 +278,6 @@ function zipValidation(){
 
 
 
-
 // takes the form field value and returns true on valid number
 function validCreditCard() {
 
@@ -259,11 +311,3 @@ function validCreditCard() {
 
 //call on page load -- credit card is set as "selected" in html
 paymentSelector();
-
-
-function emailValidation(){
-
-  var regExpression = /^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i;
-  return regExpression.test(mailInput);
-
-}
