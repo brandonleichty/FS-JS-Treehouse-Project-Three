@@ -7,6 +7,8 @@ var totalField = "<p id='totalSection'>TOTAL $<span id='total'></span></p>";
 
 var cardNum = $("#cc-num").val();
 
+var mailInput = $("#mail").val();
+
 /* DOM append -------------------------------- */
 $("#title").after(otherField);
 
@@ -28,6 +30,11 @@ $("#registerButton").on("click", formValidation);
 //updates cardNum variable on keyup
 $("#cc-num").keyup(function(){
     cardNum = $("#cc-num").val();
+})
+
+//updates mailInput variable on keyup when user types in email
+$("#mail").keyup(function(){
+    mailInput = $("#mail").val();
 })
 
 //shows the "Your Title" text entry field when "other" is selected
@@ -127,7 +134,7 @@ function paymentSelector(){
   if ($("#payment").val() === "select_method") {
       $("#credit-card, #paypal, #bitcoin").hide();
   }
-};
+}
 
 
 
@@ -156,7 +163,13 @@ function updateRunningTotal(){
 
 function formValidation(){
 
-  if (nameValidation() && paymentValidation()  && workshopValidation() && cvvValidation() && zipValidation()) {
+  if (nameValidation() &&
+      paymentValidation()  &&
+      workshopValidation() &&
+      cvvValidation() &&
+      zipValidation() &&
+      validCreditCard() &&
+      emailValidation()) {
     console.log("SUBMITTED!");
   } else {
     console.log("MISSING INFORMATION");
@@ -214,13 +227,19 @@ function zipValidation(){
 
 
 // takes the form field value and returns true on valid number
-function validCreditCard(cardNum) {
+function validCreditCard() {
+
+  cardNum = cardNum.replace(/\D/g, "");
+  //checks to make sure card number is between 15-16 numbers (VISA, MasterCard, Discover, and AMEX)
+  if (cardNum.length < 15 || cardNum.length > 16) {
+        return false;
+      }
   // accept only digits, dashes or spaces
 	if (/[^0-9-\s]+/.test(cardNum)) return false;
 
 	// The Luhn Algorithm. It's so pretty.
 	var nCheck = 0, nDigit = 0, bEven = false;
-	cardNum = cardNum.replace(/\D/g, "");
+
 
 	for (var n = cardNum.length - 1; n >= 0; n--) {
 		var cDigit = cardNum.charAt(n),
@@ -238,7 +257,13 @@ function validCreditCard(cardNum) {
 }
 
 
-
-
 //call on page load -- credit card is set as "selected" in html
 paymentSelector();
+
+
+function emailValidation(){
+
+  var regExpression = /^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i;
+  return regExpression.test(mailInput);
+
+}
