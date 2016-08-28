@@ -131,7 +131,9 @@ button:hover {
 #amex {
   height: 50px;
   opacity: .25;
-  transition: opacity .25s;
+  transition: opacity .15s;
+  transition-timing-function: cubic-bezier(0.5, 0.01, 0.58, 1);
+
 }
 
 #mastercard,
