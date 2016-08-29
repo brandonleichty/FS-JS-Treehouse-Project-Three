@@ -21,6 +21,7 @@ body {
 header {
 	text-align: center;
   color: #6e56a4;
+  padding: 2em 0;
 }
 
 h1 {
@@ -120,8 +121,8 @@ button:hover {
   font-weight: 500;
 }
 
-#payment {
-  margin-bottom: 30px;
+#paymentOptionIndicator {
+  margin-bottom: 20px;
 }
 
 
@@ -129,6 +130,7 @@ button:hover {
 #mastercard,
 #discover,
 #amex {
+
   height: 50px;
   opacity: .25;
   transition: opacity .15s;
@@ -139,7 +141,7 @@ button:hover {
 #mastercard,
 #discover,
 #amex {
-  margin-left: 1%
+  margin-left: 12px;
 }
 
 /* =================================
@@ -183,6 +185,23 @@ button:hover {
   Media Queries
 ==================================== */
 
+@media (max-width: 451px) {
+
+  #visa,
+  #mastercard,
+  #discover,
+  #amex {
+    height: 40px;
+  }
+
+  #paymentOptionIndicator {
+
+    display: flex;
+    justify-content: center;
+
+
+}
+
 @media (min-width: 0) and (max-width: 679px) {
 	header {
 		padding: 2em 0;
@@ -190,7 +209,6 @@ button:hover {
 	button {
 		width: 100%;
 	}
-}
 
 @media (min-width: 680px) {
 	header {
