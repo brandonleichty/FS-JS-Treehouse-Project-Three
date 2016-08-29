@@ -110,11 +110,14 @@ button {
 	background: #6e56a4;
 	margin: 1.25em 0 .5em;
 	cursor: pointer;
+  transition: all 0.3s ease 0s;
+
 }
 
 button:hover {
-	background: #b1b1b1;
+	background: #51b893;
 }
+
 
 #totalSection {
   font-size: 1.25em;
@@ -145,6 +148,10 @@ button:hover {
   margin-left: 12px;
 }
 
+#exp-year {
+  margin-left: 10px;
+}
+
 select {
     -webkit-appearance: button;
     -moz-appearance: button;
@@ -155,11 +162,11 @@ select {
     -webkit-padding-start: 2px;
     -moz-padding-start: 2px;
     background-color: #F07575; /* fallback color if gradients are not supported */
-    background-image: url(../images/select-arrow.png), -webkit-linear-gradient(top, #E5E5E5, #F4F4F4); /* For Chrome and Safari */
-    background-image: url(../images/select-arrow.png), -moz-linear-gradient(top, #E5E5E5, #F4F4F4); /* For old Fx (3.6 to 15) */
-    background-image: url(../images/select-arrow.png), -ms-linear-gradient(top, #E5E5E5, #F4F4F4); /* For pre-releases of IE 10*/
-    background-image: url(../images/select-arrow.png), -o-linear-gradient(top, #E5E5E5, #F4F4F4); /* For old Opera (11.1 to 12.0) */
-    background-image: url(../images/select-arrow.png), linear-gradient(to bottom, #6e56a4, #6e56a4); /* Standard syntax; must be last */
+    background-image: url(../img/downarrow.svg), -webkit-linear-gradient(top, #E5E5E5, #F4F4F4); /* For Chrome and Safari */
+    background-image: url(../img/downarrow.svg), -moz-linear-gradient(top, #E5E5E5, #F4F4F4); /* For old Fx (3.6 to 15) */
+    background-image: url(../img/downarrow.svg), -ms-linear-gradient(top, #E5E5E5, #F4F4F4); /* For pre-releases of IE 10*/
+    background-image: url(../img/downarrow.svg), -o-linear-gradient(top, #E5E5E5, #F4F4F4); /* For old Opera (11.1 to 12.0) */
+    background-image: url(../img/downarrow.svg), linear-gradient(to bottom, #6e56a4, #6e56a4); /* Standard syntax; must be last */
     background-position: center right;
     background-repeat: no-repeat;
     border: 2px solid #998ab7;
@@ -169,6 +176,7 @@ select {
     font-size: inherit;
     margin: 0;
     overflow: hidden;
+    padding-right: 52px;
     padding-left: 12px;
     padding-top: 12px;
     padding-bottom: 12px;
@@ -233,13 +241,27 @@ select {
   }
 
   .col-3 {
-		width: 57.5%;
+		width: 60.5%;
     float: left;
 	}
 
-  #col-3{
-    width: 40%;
+  #cvvCol{
+    width: 37%;
     margin-left: 2.5%;
+  }
+
+  #exp-month {
+    width: 60.5%;
+  }
+
+  #exp-year{
+    width: 37%;
+    margin-left: 0px;
+    float: right;
+  }
+
+  #payment {
+    width: 100%
   }
 
 }

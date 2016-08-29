@@ -222,8 +222,12 @@ function formValidation(){
       zipValidation() &&
       validCreditCard() &&
       emailValidation()) {
+
+      //$('#registerButton').css({"color":"#51b893"});
     console.log("SUBMITTED!");
+
   } else {
+    //$('#registerButton').css({"color":"#6e56a4"});
     console.log("MISSING INFORMATION");
   }
 
