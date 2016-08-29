@@ -113,8 +113,10 @@ $("#design").on("change", function() {
 $('#js-frameworks').on('change',function(){
   if($(this).is(':checked')){
     $('#express').prop( "disabled", true );
+    $('#express').parent().css({"opacity":".25"});
   } else {
     $('#express').prop( "disabled", false);
+    $('#express').parent().css({"opacity":"1"});
   }
 });
 
@@ -122,8 +124,10 @@ $('#js-frameworks').on('change',function(){
 $('#express').on('change',function(){
   if($(this).is(':checked')){
     $('#js-frameworks').prop( "disabled", true );
+    $('#js-frameworks').parent().css({"opacity":".25"});
   } else {
     $('#js-frameworks').prop( "disabled", false);
+    $('#js-frameworks').parent().css({"opacity":"1"});
   }
 });
 
@@ -131,8 +135,10 @@ $('#express').on('change',function(){
 $('#js-libs').on('change',function(){
   if($(this).is(':checked')){
     $('#node').prop( "disabled", true );
+    $('#node').parent().css({"opacity":".25"});
   } else {
     $('#node').prop( "disabled", false);
+    $('#node').parent().css({"opacity":"1"});
   }
 });
 
@@ -140,8 +146,10 @@ $('#js-libs').on('change',function(){
 $('#node').on('change',function(){
   if($(this).is(':checked')){
     $('#js-libs').prop( "disabled", true );
+    $('#js-libs').parent().css({"opacity":".25"});
   } else {
     $('#js-libs').prop( "disabled", false);
+    $('#js-libs').parent().css({"opacity":"1"});
   }
 });
 

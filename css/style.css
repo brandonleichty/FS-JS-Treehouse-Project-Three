@@ -144,6 +144,7 @@ button:hover {
   margin-left: 12px;
 }
 
+
 /* =================================
   Page Styles
 ==================================== */
@@ -195,11 +196,9 @@ button:hover {
   }
 
   #paymentOptionIndicator {
-
     display: flex;
     justify-content: center;
-
-
+  }
 }
 
 @media (min-width: 0) and (max-width: 679px) {
@@ -209,11 +208,12 @@ button:hover {
 	button {
 		width: 100%;
 	}
+}
 
 @media (min-width: 680px) {
-	header {
+	/*header {
 		padding: 4.65em 0 2.5em;
-	}
+	}*/
 	.col {
 		float: left;
 	}
