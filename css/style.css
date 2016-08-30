@@ -82,6 +82,7 @@ label {
 input,
 select {
 	margin-bottom: 1.125em;
+  transition: all 0.3s ease 0s;
 }
 
 input {
@@ -107,15 +108,16 @@ input[type="radio"] {
 button {
 	color: #fff;
 	padding: .55em 1.25em;
-	background: #6e56a4;
+	background: #51b893;
 	margin: 1.25em 0 .5em;
+  border-radius: 2px;
 	cursor: pointer;
   transition: all 0.3s ease 0s;
 
 }
 
 button:hover {
-	background: #51b893;
+	background: #3f9677;
 }
 
 
@@ -162,15 +164,15 @@ select {
     -moz-padding-end: 20px;
     -webkit-padding-start: 2px;
     -moz-padding-start: 2px;
-    background-color: #F07575; /* fallback color if gradients are not supported */
-    background-image: url(../img/downarrow.svg), -webkit-linear-gradient(top, #E5E5E5, #F4F4F4); /* For Chrome and Safari */
-    background-image: url(../img/downarrow.svg), -moz-linear-gradient(top, #E5E5E5, #F4F4F4); /* For old Fx (3.6 to 15) */
-    background-image: url(../img/downarrow.svg), -ms-linear-gradient(top, #E5E5E5, #F4F4F4); /* For pre-releases of IE 10*/
-    background-image: url(../img/downarrow.svg), -o-linear-gradient(top, #E5E5E5, #F4F4F4); /* For old Opera (11.1 to 12.0) */
+    background-color: #6e56a4; /* fallback color if gradients are not supported */
+    background-image: url(../img/downarrow.svg), -webkit-linear-gradient(top, #6e56a4, #6e56a4); /* For Chrome and Safari */
+    background-image: url(../img/downarrow.svg), -moz-linear-gradient(top, #6e56a4, #6e56a4); /* For old Fx (3.6 to 15) */
+    background-image: url(../img/downarrow.svg), -ms-linear-gradient(top, #6e56a4, #6e56a4); /* For pre-releases of IE 10*/
+    background-image: url(../img/downarrow.svg), -o-linear-gradient(top, #6e56a4, #6e56a4); /* For old Opera (11.1 to 12.0) */
     background-image: url(../img/downarrow.svg), linear-gradient(to bottom, #6e56a4, #6e56a4); /* Standard syntax; must be last */
     background-position: center right;
     background-repeat: no-repeat;
-    border: 2px solid #998ab7;
+    border: 2px solid #6e56a4;
     border-radius: 2px;
     box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
     color: white;

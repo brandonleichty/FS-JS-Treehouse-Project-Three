@@ -321,6 +321,13 @@ function highlightErrors(){
   } else {
     $('#cardCol input').css('background-color', 'white');
   }
+
+  if (paymentValidation() === false) {
+    $('#paymentDropdown select').css('border-color', '#ff7373');
+  } else {
+    $('#paymentDropdown select').css('border-color', '#6e56a4');
+  }
+
 }
 
 

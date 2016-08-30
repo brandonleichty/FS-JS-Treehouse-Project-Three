@@ -93,13 +93,15 @@
       <fieldset>
         <legend>Payment Info</legend>
 
-        <label for="payment">I'm going to pay with:</label>
-        <select id="payment" name="user_payment">
-          <option value="select_method">Select Payment Method</option>
-          <option value="credit card" selected>Credit Card</option>
-          <option value="paypal">PayPal</option>
-          <option value="bitcoin">Bitcoin</option>
-        </select>
+        <div id="paymentDropdown">
+          <label for="payment">I'm going to pay with:</label>
+          <select id="payment" name="user_payment">
+            <option value="select_method">Select Payment Method</option>
+            <option value="credit card" selected>Credit Card</option>
+            <option value="paypal">PayPal</option>
+            <option value="bitcoin">Bitcoin</option>
+          </select>
+        </div>
 
 
         <div id="credit-card" class="credit-card">
