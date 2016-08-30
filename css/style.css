@@ -121,7 +121,11 @@ button:hover {
 }
 
 .activities label {
-  transition: all 0.3s ease 0s;  
+  transition: all 0.3s ease 0s;
+}
+
+#other-title {
+  margin-top: 15px;
 }
 
 #totalSection {
@@ -158,8 +162,15 @@ button:hover {
 }
 
 #infoError {
-  font-size: 1.4em;
+  font-size: 1.3em;
   color: #ff7373;
+  font-weight: bold;
+  padding-top: 30px;
+}
+
+#success {
+  font-size: 1.3em;
+  color: #51b893;
   font-weight: bold;
   padding-top: 30px;
 }
@@ -276,6 +287,15 @@ select {
   #payment {
     width: 100%
   }
+
+  #infoError {
+    font-size: 1em;
+  }
+
+  #success {
+    font-size: 1em;
+  }
+
 
 }
 

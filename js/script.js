@@ -5,7 +5,10 @@ var otherField = '<input type="text" id="other-title" placeholder="Your Title">'
 
 var totalField = "<p id='totalSection'>TOTAL $<span id='total'></span></p>";
 
-var errofField = '<div id="infoError"><span>Oops!<br> Some required information is missing or incorrect.</span></div>';
+var errofField = '<div id="infoError"><span>OOPS!<br><br>Required information is missing or incorrect.</span></div>';
+
+var successfulRegistration = "<div id='success'><span>CONGRATS!<br><br>You've been registered.<br>See you at the conference!</span></div>";
+
 
 var cardNum = $("#cc-num").val();
 
@@ -37,6 +40,10 @@ $("#colors-js-puns").hide();
 
 $("#paymentArea").after(errofField);
 $("#infoError").hide();
+
+$("#paymentArea").after(successfulRegistration);
+$("#success").hide();
+
 
 paymentSelector();
 
@@ -229,16 +236,18 @@ function formValidation(){
       validCreditCard() &&
       emailValidation()) {
 
-      //$('#registerButton').css({"color":"#51b893"});
-    console.log("SUBMITTED!");
+        $("#success").slideDown(350);
 
-  } else {
-    highlightErrors();
-    $("#infoError").slideDown(350);
-    console.log("MISSING INFORMATION");
+        //$('#registerButton').css({"color":"#51b893"});
+        console.log("SUBMITTED!");
+
+    } else {
+        highlightErrors();
+        $("#infoError").slideDown(350);
+        console.log("MISSING INFORMATION");
+        }
+
     }
-
-  }
 
 
 
@@ -347,6 +356,10 @@ function hideErrorMessage() {
     if ($("#infoError").is(":visible") === true) {
       $("#infoError").slideUp(350);
     }
+
+    if ($("#success").is(":visible") === true) {
+      $("#success").slideUp(350);
+    }
 }
 
 //if the input background color is red (due to erros when user tries to submit),
@@ -362,6 +375,7 @@ $('input').on('click', function(){
     hideErrorMessage()
 });
 
+
 $('select').on('click', function(){
     if ($(this).css('border-color') === 'rgb(255, 115, 115)') {
         $(this).css('border-color', '#6e56a4');
@@ -370,18 +384,18 @@ $('select').on('click', function(){
 });
 
 
-// takes the form field value and returns true on valid number
+// takes the form field value and returns true if valid number
 function validCreditCard() {
 
   cardNum = cardNum.replace(/\D/g, "");
-  //checks to make sure card number is between 15-16 numbers (VISA, MasterCard, Discover, and AMEX)
+  //checks to make sure card number is between 15-16 numbers (lengths of: VISA, MasterCard, Discover, and AMEX)
   if (cardNum.length < 15 || cardNum.length > 16) {
         return false;
       }
   // accept only digits, dashes or spaces
 	if (/[^0-9-\s]+/.test(cardNum)) return false;
 
-	// The Luhn Algorithm. It's so pretty.
+	// The Luhn Algorithm.
 	var nCheck = 0, nDigit = 0, bEven = false;
 
 
