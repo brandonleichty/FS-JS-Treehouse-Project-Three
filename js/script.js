@@ -1,3 +1,6 @@
+//call on page load -- credit card is set as "selected" in html
+paymentSelector();
+
 /* Global Variables -------------------------------- */
 var runningTotal = 0;
 
@@ -37,10 +40,11 @@ $("#totalSection").hide();
 
 $("#colors-js-puns").hide();
 
-
+//appends missing/incorrect message below payment area (and then hides it)
 $("#paymentArea").after(errofField);
 $("#infoError").hide();
 
+//appends successful registration message below payment area (and then hides it)
 $("#paymentArea").after(successfulRegistration);
 $("#success").hide();
 
@@ -59,37 +63,40 @@ $("#cc-num").keyup(function(){
 
     cardNum = $("#cc-num").val();
 
-    if (cardNum.match(visaIndicator) != null){
+    //highlights VISA
+    if (cardNum.match(visaIndicator) !== null){
         $('#visa').css({"opacity":"1"});
     } else {
         $('#visa').css({"opacity":".25"});
     }
 
-    if (cardNum.match(masterCardIndicator) != null){
+    //highlights Mastercard
+    if (cardNum.match(masterCardIndicator) !== null){
         $('#mastercard').css({"opacity":"1"});
       } else {
         $('#mastercard').css({"opacity":".25"});
       }
 
-
-    if (cardNum.match(amexIndicator) != null){
+    //highlights AMEX
+    if (cardNum.match(amexIndicator) !== null){
         $('#amex').css({"opacity":"1"});
       } else {
         $('#amex').css({"opacity":".25"});
       }
 
-    if (cardNum.match(discoverIndicator) != null){
+    //highlights Discover
+    if (cardNum.match(discoverIndicator) !== null){
         $('#discover').css({"opacity":"1"});
       } else {
         $('#discover').css({"opacity":".25"});
       }
 
-})
+});
 
 //updates mailInput variable on keyup when user types in email
 $("#mail").keyup(function(){
     mailInput = $("#mail").val();
-})
+});
 
 //shows the "Your Title" text entry field when "other" is selected
 $("#title").change(function() {
@@ -127,6 +134,7 @@ $('#js-frameworks').on('change',function(){
   if($(this).is(':checked')){
     $('#express').prop( "disabled", true );
     $('#express').parent().css({"opacity":".25"});
+
   } else {
     $('#express').prop( "disabled", false);
     $('#express').parent().css({"opacity":"1"});
@@ -167,6 +175,7 @@ $('#node').on('change',function(){
 });
 
 
+//updates running total (or hides running total) based upon workshop selections
 $('.activities').children().on('change',function(){
   updateRunningTotal();
 
@@ -182,24 +191,6 @@ $('.activities').children().on('change',function(){
 $("#payment").on("change", paymentSelector);
 
 
-function paymentSelector(){
-
-  if ($("#payment").val() === "credit card") {
-      $("#credit-card").show();
-      $("#paypal, #bitcoin").hide();
-  }
-  if ($("#payment").val() === "paypal") {
-      $("#paypal").show();
-      $("#credit-card, #bitcoin").hide();
-  }
-  if ($("#payment").val() === "bitcoin") {
-      $("#bitcoin").show();
-      $("#credit-card, #paypal").hide();
-  }
-  if ($("#payment").val() === "select_method") {
-      $("#credit-card, #paypal, #bitcoin").hide();
-  }
-}
 
 
 
@@ -225,7 +216,8 @@ function updateRunningTotal(){
 }
 
 
-
+//checks to make sure there is no missing (or incorrect) information in the form.
+//
 function formValidation(){
 
   if (nameValidation() &&
@@ -238,16 +230,34 @@ function formValidation(){
 
         $("#success").slideDown(350);
 
-        //$('#registerButton').css({"color":"#51b893"});
-        console.log("SUBMITTED!");
-
     } else {
         highlightErrors();
         $("#infoError").slideDown(350);
-        console.log("MISSING INFORMATION");
         }
 
     }
+
+
+
+//hides and shows payment options based upon selection
+function paymentSelector(){
+
+  if ($("#payment").val() === "credit card") {
+      $("#credit-card").show();
+      $("#paypal, #bitcoin").hide();
+  }
+  if ($("#payment").val() === "paypal") {
+      $("#paypal").show();
+      $("#credit-card, #bitcoin").hide();
+  }
+  if ($("#payment").val() === "bitcoin") {
+      $("#bitcoin").show();
+      $("#credit-card, #paypal").hide();
+  }
+  if ($("#payment").val() === "select_method") {
+      $("#credit-card, #paypal, #bitcoin").hide();
+  }
+}
 
 
 
@@ -260,7 +270,7 @@ function nameValidation(){
   }
 }
 
-
+//validates a valid email input by user
 function emailValidation(){
 
   var regExpression = /^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i;
@@ -269,7 +279,7 @@ function emailValidation(){
 }
 
 
-//validates thee is a payment method selected
+//validates there is a payment method selected
 function paymentValidation(){
   if ($("#payment").val() !== "select_method") {
     return true;
@@ -306,6 +316,7 @@ function zipValidation(){
 }
 
 
+//looks for missing (or incorrect) information. Adds red color to areas with errors
 function highlightErrors(){
 
   if (cvvValidation() === false && $("#payment").val() === "credit card") {
@@ -352,6 +363,8 @@ function highlightErrors(){
 
 }
 
+
+//hides the error (missing information) message AND hides successful registration message
 function hideErrorMessage() {
     if ($("#infoError").is(":visible") === true) {
       $("#infoError").slideUp(350);
@@ -362,8 +375,7 @@ function hideErrorMessage() {
     }
 }
 
-//if the input background color is red (due to erros when user tries to submit),
-//change the color back to white upon click
+//if the input background color is red (due to erros when user tries to submit), change the color back to white upon click
 $('input').on('click', function(){
     if ($(this).css('background-color') === 'rgb(255, 115, 115)') {
         $(this).css('background-color', 'white');
@@ -372,15 +384,16 @@ $('input').on('click', function(){
     if ($('.activities').children('label').css('color') === 'rgb(255, 115, 115)' && workshopValidation() === true) {
         $('.activities').children('label').css('color', 'white');
     }
-    hideErrorMessage()
+    hideErrorMessage();
 });
 
 
+//removes red border color on click
 $('select').on('click', function(){
     if ($(this).css('border-color') === 'rgb(255, 115, 115)') {
         $(this).css('border-color', '#6e56a4');
     }
-    hideErrorMessage()
+    hideErrorMessage();
 });
 
 
@@ -411,9 +424,5 @@ function validCreditCard() {
 		bEven = !bEven;
 	}
 
-	return (nCheck % 10) == 0;
+	return (nCheck % 10) === 0;
 }
-
-
-//call on page load -- credit card is set as "selected" in html
-paymentSelector();
