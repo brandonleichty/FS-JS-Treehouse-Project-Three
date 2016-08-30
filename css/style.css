@@ -120,7 +120,9 @@ button:hover {
 	background: #3f9677;
 }
 
-
+.activities label {
+  transition: all 0.3s ease 0s;  
+}
 
 #totalSection {
   font-size: 1.25em;

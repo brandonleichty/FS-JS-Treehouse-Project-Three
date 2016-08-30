@@ -335,6 +335,12 @@ function highlightErrors(){
     $('#paymentDropdown select').css('border-color', '#6e56a4');
   }
 
+  if (workshopValidation() === false) {
+    $('.activities').children('label').css('color', '#ff7373');
+  } else {
+    $('.activities').children('label').css('color', 'white');
+  }
+
 }
 
 function hideErrorMessage() {
@@ -348,6 +354,10 @@ function hideErrorMessage() {
 $('input').on('click', function(){
     if ($(this).css('background-color') === 'rgb(255, 115, 115)') {
         $(this).css('background-color', 'white');
+    }
+
+    if ($('.activities').children('label').css('color') === 'rgb(255, 115, 115)' && workshopValidation() === true) {
+        $('.activities').children('label').css('color', 'white');
     }
     hideErrorMessage()
 });
