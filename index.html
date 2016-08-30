@@ -20,11 +20,15 @@
       <fieldset>
         <legend>Basic Info</legend>
 
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="user_name" autofocus>
+        <div id="nameCol">
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="user_name" autofocus>
+        </div>
 
-        <label for="mail">Email:</label>
-        <input type="email" id="mail" name="user_email">
+        <div id="mailCol">
+          <label for="mail">Email:</label>
+          <input type="email" id="mail" name="user_email">
+        </div>
 
         <label>Job Role</label>
           <select id="title" name="user_title">
@@ -64,12 +68,12 @@
         <div id="colors-js-puns" class="">
           <label for="color">Color:</label>
           <select id="color">
-            <option value="cornflowerblue">Cornflower Blue (JS Puns shirt only)</option>
-            <option value="darkslategrey">Dark Slate Grey (JS Puns shirt only)</option>
-            <option value="gold">Gold (JS Puns shirt only)</option>
-            <option value="tomato">Tomato (I &#9829; JS shirt only)</option>
-            <option value="steelblue">Steel Blue (I &#9829; JS shirt only)</option>
-            <option value="dimgrey">Dim Grey (I &#9829; JS shirt only)</option>
+            <option value="cornflowerblue">Cornflower Blue</option>
+            <option value="darkslategrey">Dark Slate Grey</option>
+            <option value="gold">Gold</option>
+            <option value="tomato">Tomato</option>
+            <option value="steelblue">Steel Blue</option>
+            <option value="dimgrey">Dim Grey</option>
           </select>
         </div>
       </fieldset>
@@ -107,12 +111,12 @@
             <img id="amex" src="img/amex.svg" alt="">
           </div>
 
-          <div class="col-6 col">
+          <div id="cardCol" class="col-6 col">
             <label for="cc-num">Card Number:</label>
         	  <input id="cc-num" name="user_cc-num" type="text">
           </div>
 
-          <div class="col-3 col">
+          <div id="zipCol"class="col-3 col">
             <label for="zip">Zip Code:</label>
             <input id="zip" name="user_zip" type="text">
           </div>

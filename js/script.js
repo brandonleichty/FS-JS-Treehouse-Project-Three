@@ -227,11 +227,12 @@ function formValidation(){
     console.log("SUBMITTED!");
 
   } else {
-    //$('#registerButton').css({"color":"#6e56a4"});
+    highlightErrors();
     console.log("MISSING INFORMATION");
+    }
+
   }
 
-}
 
 
 //validates there is a name in the name field
@@ -274,7 +275,7 @@ function workshopValidation(){
 function cvvValidation(){
   if ($("#cvv").val().length === 3) {
     return true;
-  } else {
+  } else if ($("#cvv").val().length !== 3) {
     return false;
   }
 }
@@ -288,6 +289,39 @@ function zipValidation(){
   }
 }
 
+
+function highlightErrors(){
+
+  if (cvvValidation() === false) {
+    $('#cvvCol input').css('background-color', '#ff7373');
+  } else {
+    $('#cvvCol input').css('background-color', 'white');
+  }
+
+  if (zipValidation() === false) {
+    $('#zipCol input').css('background-color', '#ff7373');
+  } else {
+    $('#zipCol input').css('background-color', 'white');
+  }
+
+  if (emailValidation() === false) {
+    $('#mailCol input').css('background-color', '#ff7373');
+  } else {
+    $('#mailCol input').css('background-color', 'white');
+  }
+
+  if (nameValidation() === false) {
+    $('#nameCol input').css('background-color', '#ff7373');
+  } else {
+    $('#nameCol input').css('background-color', 'white');
+  }
+
+  if (validCreditCard() === false) {
+    $('#cardCol input').css('background-color', '#ff7373');
+  } else {
+    $('#cardCol input').css('background-color', 'white');
+  }
+}
 
 
 // takes the form field value and returns true on valid number
