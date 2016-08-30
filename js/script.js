@@ -5,6 +5,8 @@ var otherField = '<input type="text" id="other-title" placeholder="Your Title">'
 
 var totalField = "<p id='totalSection'>TOTAL $<span id='total'></span></p>";
 
+var errofField = '<div id="infoError"><span>Oops!<br> Some required information is missing or incorrect.</span></div>';
+
 var cardNum = $("#cc-num").val();
 
 var mailInput = $("#mail").val();
@@ -31,6 +33,10 @@ $(".activities").after(totalField);
 $("#totalSection").hide();
 
 $("#colors-js-puns").hide();
+
+
+$("#paymentArea").after(errofField);
+$("#infoError").hide();
 
 paymentSelector();
 
@@ -228,6 +234,7 @@ function formValidation(){
 
   } else {
     highlightErrors();
+    $("#infoError").slideDown(350);
     console.log("MISSING INFORMATION");
     }
 
@@ -292,13 +299,13 @@ function zipValidation(){
 
 function highlightErrors(){
 
-  if (cvvValidation() === false) {
+  if (cvvValidation() === false && $("#payment").val() === "credit card") {
     $('#cvvCol input').css('background-color', '#ff7373');
   } else {
     $('#cvvCol input').css('background-color', 'white');
   }
 
-  if (zipValidation() === false) {
+  if (zipValidation() === false && $("#payment").val() === "credit card") {
     $('#zipCol input').css('background-color', '#ff7373');
   } else {
     $('#zipCol input').css('background-color', 'white');
@@ -316,7 +323,7 @@ function highlightErrors(){
     $('#nameCol input').css('background-color', 'white');
   }
 
-  if (validCreditCard() === false) {
+  if (validCreditCard() === false && $("#payment").val() === "credit card") {
     $('#cardCol input').css('background-color', '#ff7373');
   } else {
     $('#cardCol input').css('background-color', 'white');
@@ -329,6 +336,28 @@ function highlightErrors(){
   }
 
 }
+
+function hideErrorMessage() {
+    if ($("#infoError").is(":visible") === true) {
+      $("#infoError").slideUp(350);
+    }
+}
+
+//if the input background color is red (due to erros when user tries to submit),
+//change the color back to white upon click
+$('input').on('click', function(){
+    if ($(this).css('background-color') === 'rgb(255, 115, 115)') {
+        $(this).css('background-color', 'white');
+    }
+    hideErrorMessage()
+});
+
+$('select').on('click', function(){
+    if ($(this).css('border-color') === 'rgb(255, 115, 115)') {
+        $(this).css('border-color', '#6e56a4');
+    }
+    hideErrorMessage()
+});
 
 
 // takes the form field value and returns true on valid number
